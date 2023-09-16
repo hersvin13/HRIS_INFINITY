@@ -7,11 +7,10 @@ import {
   NotePencil,
   Trash,
 } from "@phosphor-icons/react";
-import AddNewPosition from "./modal/add-new-position";
 
 const Position = () => {
   const [selectedPosition, setSelectedPosition] = useState("");
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  //   const [isModalOpen, setIsModalOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
 
   const [positions] = useState([
@@ -50,21 +49,13 @@ const Position = () => {
     setSearchQuery("");
   };
 
-  const toggleModal = () => {
-    setIsModalOpen(!isModalOpen);
-  };
-
   return (
     <>
       <div className="position">
         <div className="position-header">
           <div className="position-title">POSITION</div>
           <div className="add-position">
-            <button
-              type="submit"
-              onClick={toggleModal}>
-              + Add New Position
-            </button>
+            <button type="submit">+ Add New Position</button>
           </div>
         </div>
         <div className="position-filter">
@@ -175,7 +166,6 @@ const Position = () => {
           </div>
         </div>
       </div>
-      {isModalOpen && <AddNewPosition toggleModal={toggleModal} />}
     </>
   );
 };
