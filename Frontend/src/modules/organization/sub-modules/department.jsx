@@ -87,6 +87,13 @@ const Department = () => {
               name=""
               id="">
               <option value="">Select Department</option>
+              {departmentTable.map((dept, index) => (
+                <option
+                  key={index}
+                  value={dept.col_departmentName}>
+                  {dept.col_departmentName}
+                </option>
+              ))}
             </select>
           </div>
           <button

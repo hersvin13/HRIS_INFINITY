@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { MagnifyingGlass, Sliders } from "@phosphor-icons/react";
+import {
+  Eye,
+  MagnifyingGlass,
+  NotePencil,
+  Sliders,
+  Trash,
+} from "@phosphor-icons/react";
 import axios from "axios";
 import "../styles/branch.css";
 import BASE_URL from "../../../link";
@@ -199,33 +205,6 @@ const Branch = () => {
       .catch((e) => console.error(e));
   };
 
-  //   const branchList = [
-  //     {
-  //       name: "Slashtech Solutions Corp.",
-  //       address: "215 Bldg. Maysan Rd. Paso De Blas, Valenzuela",
-  //       zipcode: "1400",
-  //       email: "789@gmail.com",
-  //       telephone: "+123 3210 555",
-  //       designation: "10",
-  //     },
-  //     {
-  //       name: "Hello World Corp.",
-  //       address: "210 Bldg. Maysan Rd. Paso De Blas, Valenzuela",
-  //       zipcode: "1400",
-  //       email: "456@gmail.com",
-  //       telephone: "+143 5432 666",
-  //       designation: "8",
-  //     },
-  //     {
-  //       name: "Mall of Asian",
-  //       address: "230 Bldg. Maysan Rd. Paso De Blas, Valenzuela",
-  //       zipcode: "1400",
-  //       email: "123@gmail.com",
-  //       telephone: "+143 5432 777",
-  //       designation: "20",
-  //     },
-  //   ];
-
   const [branches, setBranches] = useState([]);
 
   const handleInputChange = (e) => {
@@ -236,10 +215,9 @@ const Branch = () => {
     const matchesSelectedBranch =
       !selectedBranch || branch.name === selectedBranch;
     const matchesSearchQuery =
-      (branch.name &&
-        branch.name.toLowerCase().includes(searchQuery.toLowerCase())) ||
-      (branch.email &&
-        branch.email.toLowerCase().includes(searchQuery.toLowerCase()));
+      (branch.branch_name &&
+        branch.branch_name.toLowerCase().includes(searchQuery)) ||
+      (branch.email && branch.email.toLowerCase().includes(searchQuery));
 
     return matchesSelectedBranch && matchesSearchQuery;
   });
@@ -283,7 +261,7 @@ const Branch = () => {
               value={selectedBranch}
               onChange={handleSelectChange}>
               <option value="">Select Branch</option>
-              {branches.map((branch, index) => (
+              {filteredBranches.map((branch, index) => (
                 <option
                   key={index}
                   value={branch.branch_name}>
@@ -337,60 +315,58 @@ const Branch = () => {
             <thead>
               <tr>
                 <td>BRANCH NAME</td>
-                <td>BRANCH ADDRESS</td>
+                <td className="address">BRANCH ADDRESS</td>
                 <td className="zipcode">ZIPCODE</td>
-                <td>EMAIL</td>
-                <td>TELEPHONE</td>
+                <td className="email">EMAIL</td>
+                <td className="telephone">TELEPHONE</td>
                 <td className="designation">DESIGNATION</td>
-                <td>ACTION</td>
+                <td className="action">ACTION</td>
               </tr>
             </thead>
             <tbody>
               {filteredBranches.map((branch, index) => (
                 <tr key={index}>
-                  <td>{branch.branch_name}</td>
-                  <td>{branch.branch_address}</td>
-                  <td>{branch.zip_code}</td>
-                  <td>{branch.email}</td>
-                  <td>{branch.telephone_no}</td>
-                  <td>{branch.designation}</td>
-                  <td>
-                    <Row>
-                      <Col>
-                        {/* View Branch Employees */}d
-                        <Button
-                          variant="primary"
-                          onClick={() => {
-                            fetchBranchEmployees(branch.branchId);
-                            showView();
-                          }}>
-                          View
-                        </Button>
-                      </Col>
-                      <Col>
-                        {/* Update Branch */}
-                        <Button
-                          variant="warning"
-                          onClick={() => {
-                            fetchCurrentBranch(branch.branchId);
-                            openUpdateModal();
-                          }}>
-                          Update
-                        </Button>
-                      </Col>
-                      <Col>
-                        {/* Delete Branch */}
-                        <Button
-                          variant="danger"
-                          onClick={() => {
-                            console.log(branch.branchId); // deleteId should be the branchId
-                            // setDeleteId(branch.branchId)
-                            handleDelete(branch.branchId);
-                          }}>
-                          Delete
-                        </Button>
-                      </Col>
-                    </Row>
+                  <td className="name">{branch.branch_name}</td>
+                  <td className="address">{branch.branch_address}</td>
+                  <td className="zipcode">{branch.zip_code}</td>
+                  <td className="email">{branch.email}</td>
+                  <td className="telephone">{branch.telephone_no}</td>
+                  <td className="designation">{branch.designation}</td>
+                  <td className="action">
+                    <div className="view">
+                      {/* View Branch Employees */}
+                      <Button
+                        variant="primary"
+                        onClick={() => {
+                          fetchBranchEmployees(branch.branchId);
+                          showView();
+                        }}>
+                        <Eye />
+                      </Button>
+                    </div>
+                    <div className="edit">
+                      {/* Update Branch */}
+                      <Button
+                        variant="warning"
+                        onClick={() => {
+                          fetchCurrentBranch(branch.branchId);
+                          openUpdateModal();
+                        }}>
+                        <NotePencil />
+                      </Button>
+                    </div>
+                    <div className="delete">
+                      {/* Delete Branch */}
+                      <Button
+                        variant="danger"
+                        onClick={() => {
+                          console.log(branch.branchId); // deleteId should be the branchId
+                          // setDeleteId(branch.branchId)
+                          handleDelete(branch.branchId);
+                        }}>
+                        <Trash />
+                      </Button>
+                    </div>
                   </td>
                 </tr>
               ))}

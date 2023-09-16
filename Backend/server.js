@@ -21,10 +21,12 @@ app.use(express.json()); // Add this line to parse incoming JSON data
 const userRoute = require("./routes/user.route");
 const branchRoute = require("./routes/branch.route");
 const departmentRoute = require("./routes/department.route");
+const positionsRoute = require("./routes/position.route");
 
 app.use("/user", userRoute);
 app.use("/branch", branchRoute);
 app.use("/department", departmentRoute);
+app.use("/position", positionsRoute);
 
 app.listen(port, () => {
   console.log(`listening to port ${port}`);

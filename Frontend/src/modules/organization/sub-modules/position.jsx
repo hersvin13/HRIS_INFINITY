@@ -7,55 +7,42 @@ import {
   NotePencil,
   Trash,
 } from "@phosphor-icons/react";
+// import axios from "axios";
+// import BASE_URL from "../../../link";
+import AddNewPositions from "./modal/position-modal/add-modal";
+import ViewPositions from "./modal/position-modal/view-modal";
+import UpdatePositions from "./modal/position-modal/update-modal";
 
 const Position = () => {
-  const [selectedPosition, setSelectedPosition] = useState("");
-  //   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
+  //add modal
+  const [addModal, setAddModal] = useState();
 
-  const [positions] = useState([
-    { position: "Front End Developer", totalEmp: "20" },
-    { position: "Back End Developer", totalEmp: "30" },
-    { position: "Full Stack Developer", totalEmp: "50" },
-  ]);
-
-  const handleInputChange = (e) => {
-    setSearchQuery(e.target.value);
+  const addPositions = () => {
+    setAddModal(!addModal);
   };
 
-  const filteredPositions = positions.filter((positions) => {
-    const matchesSelectedPositions =
-      !selectedPosition || positions.position === selectedPosition;
-    const matchesSearchQuery =
-      positions.position &&
-      positions.position.toLowerCase().includes(searchQuery.toLowerCase());
-    //     ||
-    //   (positions.email &&
-    //     positions.email.toLowerCase().includes(searchQuery.toLowerCase()));
-
-    return matchesSelectedPositions && matchesSearchQuery;
-  });
-
-  const handleSelectChange = (e) => {
-    setSelectedPosition(e.target.value);
+  // view modal
+  const [viewModal, setViewModal] = useState();
+  const viewPositions = () => {
+    setViewModal(!viewModal);
   };
 
-  const filteredEntries = filteredPositions.length;
-
-  const numberOfEntries = positions.length;
-
-  const handleClearFilters = () => {
-    setSelectedPosition("");
-    setSearchQuery("");
+  // update modal
+  const [updateModal, setUpdateModal] = useState();
+  const updatePositions = () => {
+    setUpdateModal(!updateModal);
   };
-
   return (
     <>
       <div className="position">
         <div className="position-header">
           <div className="position-title">POSITION</div>
           <div className="add-position">
-            <button type="submit">+ Add New Position</button>
+            <button
+              type="submit"
+              onClick={addPositions}>
+              + Add New Position
+            </button>
           </div>
         </div>
         <div className="position-filter">
@@ -63,29 +50,18 @@ const Position = () => {
             <label htmlFor="">Position</label>
             <select
               name="branchSelect"
-              id="branchSelect"
-              value={selectedPosition}
-              onChange={handleSelectChange}>
+              id="branchSelect">
               <option value="">Select Position</option>
-              {positions.map((positions, index) => (
-                <option
-                  key={index}
-                  value={positions.position}>
-                  {positions.position}
-                </option>
-              ))}
             </select>
           </div>
           <button
             type="button"
             className="filter">
-            {/* onClick={handleApplyFilter}> */}
             Apply Filter
           </button>
           <button
             type="button"
-            className="clear"
-            onClick={handleClearFilters}>
+            className="clear">
             Clear Filters
           </button>
         </div>
@@ -104,8 +80,6 @@ const Position = () => {
             </div>
             <input
               type="text"
-              value={searchQuery}
-              onChange={handleInputChange}
               placeholder="Search"
             />
             <div className="search-settings">
@@ -123,30 +97,30 @@ const Position = () => {
               </tr>
             </thead>
             <tbody>
-              {filteredPositions.map((positions, index) => (
-                <tr key={index}>
-                  <td>{positions.position}</td>
-                  <td>{positions.totalEmp}</td>
-                  <td className="action">
-                    <div className="view">
-                      <Eye />
-                    </div>
-                    <div className="edit">
-                      <NotePencil />
-                    </div>
-                    <div className="delete">
-                      <Trash />
-                    </div>
-                  </td>
-                </tr>
-              ))}
+              <tr>
+                <td></td>
+                <td></td>
+                <td className="action">
+                  <button
+                    className="view"
+                    onClick={viewPositions}>
+                    <Eye />
+                  </button>
+                  <button
+                    className="edit"
+                    onClick={updatePositions}>
+                    <NotePencil />
+                  </button>
+                  <div className="delete">
+                    <Trash />
+                  </div>
+                </td>
+              </tr>
             </tbody>
           </table>
         </div>
         <div className="position-pagination">
-          <div className="show">
-            Showing {filteredEntries} out of {numberOfEntries} Entries
-          </div>
+          <div className="show">Showing out of Entries</div>
           <div className="page">
             <button
               className="prev"
@@ -166,6 +140,9 @@ const Position = () => {
           </div>
         </div>
       </div>
+      {addModal && <AddNewPositions toggleModal={addPositions} />}
+      {viewModal && <ViewPositions toggleModal={viewPositions} />}
+      {updateModal && <UpdatePositions toggleModal={updatePositions} />}
     </>
   );
 };
