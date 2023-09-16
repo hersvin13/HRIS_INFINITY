@@ -1,0 +1,217 @@
+.position {
+  height: 850px;
+  background-color: white;
+  border-radius: 20px;
+  margin: 2rem -22rem 0rem 0rem;
+  padding: 1.5rem 2rem 0rem 2rem;
+  font-family: Poppins;
+}
+
+/* header  */
+.position .position-header {
+  display: flex;
+  justify-content: space-between;
+}
+.position .position-header .position-title {
+  font-size: 32px;
+  font-weight: 600;
+}
+.position .position-header .add-position {
+  background-color: #0083fd;
+  font-weight: 500;
+  border-radius: 10px;
+  color: white;
+  width: 190px;
+  height: 55px;
+  padding: 1rem;
+}
+
+/* filter */
+.position .position-filter {
+  display: flex;
+  margin: 1.5rem 0rem 0rem 0rem;
+}
+.position .position-filter .select-position {
+  display: flex;
+  flex-direction: column;
+}
+.position .position-filter label {
+  font-weight: 600;
+}
+.position .position-filter select {
+  border: 1px solid gray;
+  width: 230px;
+  height: 40px;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  margin-right: 2rem;
+}
+.position .position-filter button {
+  border: 1px solid gray;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  margin: 1.2rem 2rem 0rem 0rem;
+  height: 50px;
+  width: 120px;
+}
+.position .position-filter .filter {
+  background-color: #2a3042;
+  color: white;
+  font-weight: 500;
+  border-radius: 5px;
+}
+.position .position-filter .clear {
+  background-color: #f4f4f4;
+  color: black;
+  font-weight: 500;
+  border: none;
+  border-radius: 5px;
+  width: 150px;
+}
+
+/* search  */
+.position .position-search {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+}
+.position .position-search .search {
+  display: flex;
+  background-color: white;
+  width: 300px;
+  height: 50px;
+  /* border: 1px solid gray; */
+  border: none;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+  padding-left: 2rem;
+}
+.position .position-search .search input:focus {
+  border: none;
+  outline: none;
+}
+.position .position-search .search .search-people {
+  color: gray;
+  margin: 0.5rem 0rem 0rem -1.5rem;
+}
+.position .position-search .search .search-settings {
+  margin: 0.5rem 1rem 0rem 1.5rem;
+  color: gray;
+}
+.position .position-search .table-page label {
+  margin-right: 0.5rem;
+}
+.position .position-search .table-page input {
+  background-color: white;
+  width: 50px;
+  /* border: 1px solid gray; */
+  border: none;
+  border-radius: 5px;
+  padding: 0.1rem;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
+.position .position-table table {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+}
+.position .position-table thead {
+  background-color: #dcdfe3;
+  width: 1550px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  padding: 1rem 3rem 1rem 3rem;
+  height: 50px;
+}
+.position .position-table thead tr {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+}
+.position .position-table tbody {
+  background-color: white;
+  width: 1550px;
+  height: 470px;
+  /* border: 1px solid gray;     */
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  overflow-y: auto;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
+.position .position-table tbody::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-bottom-right-radius: 5px;
+  background-color: white;
+}
+.position .position-table tbody::-webkit-scrollbar {
+  margin-right: 1rem;
+  width: 10px;
+  border-bottom-right-radius: 5px;
+  background-color: #f5f5f5;
+}
+
+.position .position-table tbody::-webkit-scrollbar-thumb {
+  background-color: gray;
+  border-bottom-right-radius: 5px;
+}
+.position .position-table tbody tr {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 3rem 1rem 3rem;
+  border-bottom: 1px solid gray;
+}
+.position .position-table tbody tr .action {
+  display: flex;
+  font-size: 22px;
+}
+.position .position-table tbody tr .action .view {
+  margin-right: 5px;
+  cursor: pointer;
+}
+.position .position-table tbody tr .action .edit {
+  margin-right: 5px;
+  color: #0a9cbc;
+  cursor: pointer;
+}
+.position .position-table tbody tr .action .delete {
+  display: flex;
+  color: #f90000;
+  cursor: pointer;
+}
+
+/* pagination  */
+.position .position-pagination {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+.position .position-pagination .page {
+  font-size: 15px;
+}
+.position .position-pagination .page .prev {
+  width: 70px;
+  height: 30px;
+  border: 1px solid gray;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+.position .position-pagination .page .next {
+  width: 70px;
+  height: 30px;
+  border: 1px solid gray;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+.position .position-pagination .page .number-page {
+  width: 50px;
+  background-color: black;
+  color: white;
+  height: 30px;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  opacity: 1;
+}
+
+@media only screen and (max-width: 1080px) {
+  .position {
+    display: hidden;
+  }
+}

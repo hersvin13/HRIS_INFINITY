@@ -1,0 +1,323 @@
+.department {
+  height: 850px;
+  background-color: white;
+  border-radius: 20px;
+  margin: 2rem -22rem 0rem 0rem;
+  padding: 1.5rem 2rem 0rem 2rem;
+  font-family: Poppins;
+}
+
+/* header  */
+.department .department-header {
+  display: flex;
+  justify-content: space-between;
+}
+.department .department-header .department-title {
+  font-size: 32px;
+  font-weight: 600;
+}
+.department .department-header .add-department {
+  background-color: #0083fd;
+  font-weight: 500;
+  border-radius: 10px;
+  color: white;
+  width: 220px;
+  height: 55px;
+  padding: 1rem;
+}
+
+/* filter */
+.department .department-filter {
+  display: flex;
+  margin: 1.5rem 0rem 0rem 0rem;
+}
+.department .department-filter .select-department {
+  display: flex;
+  flex-direction: column;
+}
+.department .department-filter label {
+  font-weight: 600;
+}
+.department .department-filter select {
+  border: 1px solid gray;
+  width: 230px;
+  height: 40px;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  margin-right: 2rem;
+}
+.department .department-filter button {
+  border: 1px solid gray;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  margin: 1.2rem 2rem 0rem 0rem;
+  height: 50px;
+  width: 120px;
+}
+.department .department-filter .filter {
+  background-color: #2a3042;
+  color: white;
+  font-weight: 500;
+  border-radius: 5px;
+}
+.department .department-filter .clear {
+  background-color: #f4f4f4;
+  color: black;
+  font-weight: 500;
+  border: none;
+  border-radius: 5px;
+  width: 150px;
+}
+
+/* search  */
+.department .department-search {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+}
+.department .department-search .search {
+  display: flex;
+  background-color: white;
+  width: 300px;
+  height: 50px;
+  /* border: 1px solid gray; */
+  border: none;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+  padding-left: 2rem;
+}
+.department .department-search .search input:focus {
+  border: none;
+  outline: none;
+}
+.department .department-search .search .search-people {
+  color: gray;
+  margin: 0.5rem 0rem 0rem -1.5rem;
+}
+.department .department-search .search .search-settings {
+  margin: 0.5rem 1rem 0rem 1.5rem;
+  color: gray;
+}
+.department .department-search .table-page label {
+  margin-right: 0.5rem;
+}
+.department .department-search .table-page input {
+  background-color: white;
+  width: 50px;
+  /* border: 1px solid gray; */
+  border: none;
+  border-radius: 5px;
+  padding: 0.1rem;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
+.department .department-table table {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+}
+.department .department-table thead {
+  background-color: #dcdfe3;
+  width: 1550px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  padding: 1rem 5rem 1rem 5rem;
+  height: 50px;
+}
+.department .department-table thead ul {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+}
+.department .department-table tbody {
+  background-color: white;
+  width: 1550px;
+  height: 470px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  overflow-y: auto;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
+.department .department-table tbody::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-bottom-right-radius: 5px;
+  background-color: white;
+}
+.department .department-table tbody::-webkit-scrollbar {
+  margin-right: 1rem;
+  width: 10px;
+  border-bottom-right-radius: 5px;
+  background-color: #f5f5f5;
+}
+
+.department .department-table tbody::-webkit-scrollbar-thumb {
+  background-color: gray;
+  border-bottom-right-radius: 5px;
+}
+.department .department-table tbody ul {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 5rem 1rem 5rem;
+  border-bottom: 1px solid gray;
+}
+
+/* pagination  */
+.department .department-pagination {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+.department .department-pagination .page {
+  font-size: 15px;
+}
+.department .department-pagination .page .prev {
+  width: 70px;
+  height: 30px;
+  border: 1px solid gray;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+.department .department-pagination .page .next {
+  width: 70px;
+  height: 30px;
+  border: 1px solid gray;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+.department .department-pagination .page .number-page {
+  width: 50px;
+  background-color: black;
+  color: white;
+  height: 30px;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  opacity: 1;
+}
+
+body,
+html {
+  font-size: 1em;
+}
+.main-container {
+  width: 100%;
+  background-color: #f4f4f4;
+  height: 100vh;
+}
+
+.main-content {
+  height: 85%;
+  width: 80%;
+  background-color: #fff;
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
+  border-radius: 0.5em;
+}
+
+.filter-content .filters {
+  width: 40%;
+}
+
+.filter-content button {
+  height: 2.9em;
+}
+
+.filter-content .apply-filter {
+  background-color: #2a3042;
+}
+
+.filter-content .apply-filter:hover {
+  background-color: rgb(82, 91, 119);
+  transition: ease-in 0.3s;
+}
+
+.filter-content .clear-filter {
+  background-color: #f4f4f4;
+}
+
+.filter-content .clear-filter:hover {
+  background-color: #cecece;
+  transition: ease-in 0.3s;
+}
+
+.table-responsive {
+  width: 95%;
+  margin: auto;
+}
+
+.search-bar {
+  width: 20%;
+  height: 2.8em;
+}
+
+table tbody tr td button {
+  border: none;
+  background-color: inherit;
+}
+
+table tbody tr td button:hover {
+  border: none;
+  background-color: inherit;
+}
+
+table tbody tr td i {
+  border: none;
+  background-color: inherit;
+}
+
+table tbody tr td i:hover {
+  border: none;
+  background-color: inherit;
+}
+
+table tbody tr td button:nth-child(2) {
+  color: #0a9cbc;
+}
+
+table tbody tr td button:nth-child(3) {
+  color: #f90000;
+}
+
+.d-table {
+  height: 21em;
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 3px 7px 5px 0 rgba(0, 0, 0, 0.17);
+}
+
+.b-table {
+  height: 26.4em;
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 3px 7px 5px 0 rgba(0, 0, 0, 0.17);
+}
+
+/* 
+table{
+    height: 90%;
+} */
+
+.table-responsive table thead {
+  background-color: #ebeff3;
+  height: 3em;
+}
+
+.search {
+  margin-right: 2em;
+}
+
+.pagination {
+  margin-right: 2em;
+}
+
+.custom-modal {
+  width: 80em;
+}
+
+.pagination li button {
+  color: black;
+}
+
+.pagination .page-item.active button {
+  background-color: #000;
+  border: black 1px solid;
+}
+
+.search-dd input {
+  height: 3em;
+}
+
+.dropdown {
+  margin-left: 2.5%;
+}

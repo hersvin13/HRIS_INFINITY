@@ -1,0 +1,20 @@
+.user-settings-modal {
+  position: absolute;
+  bottom: 55px; /* Adjust as needed */
+  right: 10px; /* Adjust as needed */
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  display: none; /* Initially hidden */
+}
+
+.user-settings-modal.active {
+  display: block; /* Show when active */
+}
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}

@@ -1,0 +1,190 @@
+.company-code {
+  height: 850px;
+  background-color: white;
+  border-radius: 20px;
+  margin: 2rem -22rem 0rem 0rem;
+  padding: 1.5rem 2rem 0rem 2rem;
+  font-family: Poppins;
+}
+
+/* header  */
+.company-code .company-code-header {
+  display: flex;
+  justify-content: space-between;
+}
+.company-code .company-code-header .company-code-title {
+  font-size: 32px;
+  font-weight: 600;
+}
+.company-code .company-code-header .add-company-code {
+  background-color: #0083fd;
+  font-weight: 500;
+  border-radius: 10px;
+  color: white;
+  width: 215px;
+  height: 55px;
+  padding: 1rem;
+}
+
+/* filter */
+.company-code .company-code-filter {
+  display: flex;
+  margin: 1.5rem 0rem 0rem 0rem;
+}
+.company-code .company-code-filter .select-company-code {
+  display: flex;
+  flex-direction: column;
+}
+.company-code .company-code-filter label {
+  font-weight: 600;
+}
+.company-code .company-code-filter select {
+  border: 1px solid gray;
+  width: 250px;
+  height: 40px;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  margin-right: 2rem;
+}
+.company-code .company-code-filter button {
+  border: 1px solid gray;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  margin: 1.2rem 2rem 0rem 0rem;
+  height: 50px;
+  width: 120px;
+}
+.company-code .company-code-filter .filter {
+  background-color: #2a3042;
+  color: white;
+  font-weight: 500;
+  border-radius: 5px;
+}
+.company-code .company-code-filter .clear {
+  background-color: #f4f4f4;
+  color: black;
+  font-weight: 500;
+  border: none;
+  border-radius: 5px;
+  width: 150px;
+}
+
+/* search  */
+.company-code .company-code-search {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+}
+.company-code .company-code-search .search {
+  display: flex;
+  background-color: white;
+  width: 300px;
+  height: 50px;
+  border: none;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+  padding-left: 2rem;
+}
+.company-code .company-code-search .search input:focus {
+  border: none;
+  outline: none;
+}
+.company-code .company-code-search .search .search-people {
+  color: gray;
+  margin: 0.5rem 0rem 0rem -1.5rem;
+}
+.company-code .company-code-search .search .search-settings {
+  margin: 0.5rem 1rem 0rem 1.5rem;
+  color: gray;
+}
+.company-code .company-code-search .table-page label {
+  margin-right: 0.5rem;
+}
+.company-code .company-code-search .table-page input {
+  background-color: white;
+  width: 50px;
+  border: none;
+  border-radius: 5px;
+  padding: 0.1rem;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
+.company-code .company-code-table table {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+}
+.company-code .company-code-table thead {
+  background-color: #dcdfe3;
+  width: 1550px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  padding: 1rem 5rem 1rem 5rem;
+  height: 50px;
+}
+.company-code .company-code-table thead ul {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+}
+.company-code .company-code-table tbody {
+  background-color: white;
+  width: 1550px;
+  height: 470px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  overflow-y: auto;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
+.company-code .company-code-table tbody::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-bottom-right-radius: 5px;
+  background-color: white;
+}
+.company-code .company-code-table tbody::-webkit-scrollbar {
+  margin-right: 1rem;
+  width: 10px;
+  border-bottom-right-radius: 5px;
+  background-color: #f5f5f5;
+}
+
+.company-code .company-code-table tbody::-webkit-scrollbar-thumb {
+  background-color: gray;
+  border-bottom-right-radius: 5px;
+}
+.company-code .company-code-table tbody ul {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 5rem 1rem 5rem;
+  border-bottom: 1px solid gray;
+}
+
+/* pagination  */
+.company-code .company-code-pagination {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+.company-code .company-code-pagination .page {
+  font-size: 15px;
+}
+.company-code .company-code-pagination .page .prev {
+  width: 70px;
+  height: 30px;
+  border: 1px solid gray;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+.company-code .company-code-pagination .page .next {
+  width: 70px;
+  height: 30px;
+  border: 1px solid gray;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+.company-code .company-code-pagination .page .number-page {
+  width: 50px;
+  background-color: black;
+  color: white;
+  height: 30px;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  opacity: 1;
+}

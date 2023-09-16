@@ -1,0 +1,184 @@
+.forgot {
+  display: flex;
+  flex-direction: row;
+}
+
+.app-bg {
+  height: 1000px;
+  width: 1000px;
+}
+
+.forgot-title {
+  width: 1000px;
+  height: 1000px;
+  display: flex;
+  padding: 10rem 0rem 0rem 20rem;
+}
+
+.logo {
+  width: 70px;
+  height: 70px;
+}
+
+h1 {
+  color: black;
+  font-size: 6rem;
+  font-weight: 700;
+  font-family: "Open Sans";
+  margin: -2.5rem 0rem 0rem 2rem;
+}
+h2 {
+  font-family: Poppins;
+  font-size: 45px;
+  font-weight: 8 00;
+  line-height: 50px;
+  margin: 10rem 0rem 0rem -33rem;
+  letter-spacing: -0.05em;
+  text-align: left;
+}
+h4 {
+  color: #c5b250;
+  font-family: Poppins;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 22px;
+  margin: 15rem 0rem 0rem -22rem;
+  letter-spacing: -0.05em;
+  text-align: left;
+}
+
+.forgot-form {
+  background-color: #f0eeee;
+  position: absolute;
+  height: 180px;
+  width: 750px;
+  margin: 20rem 0rem 0rem -13rem;
+  border-radius: 20px;
+  padding: 3rem 5rem 0rem 5rem;
+}
+
+.inputs {
+  display: flex;
+  height: 73px;
+  width: 600px;
+  margin: 0rem 0rem 2rem 0rem;
+  padding: 0rem 0rem 0rem 2rem;
+  border-radius: 10px;
+  font-size: 1.3rem;
+  font-family: "Poppins";
+}
+
+.inputs::placeholder {
+  color: #5a3092;
+  font-family: Poppins;
+}
+
+.for-rem {
+  display: flex;
+  justify-content: space-between;
+  font-family: "Poppins";
+  font-weight: 600;
+}
+
+.remember {
+  display: flex;
+  margin: 0rem 1rem 0rem 0rem;
+}
+
+.submit {
+  background-color: #ffc700;
+  width: 600px;
+  height: 70px;
+  margin: 50rem 3.5rem 0rem 0rem;
+  color: black;
+  font-size: 1.5rem;
+  border-radius: 10px;
+  font-family: "Poppins";
+  font-weight: 600;
+}
+
+@media only screen and (max-width: 980px) {
+  .login {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .app-bg {
+    height: 993px;
+    width: 1000px;
+  }
+
+  .login-title {
+    background-color: black;
+    width: 800px;
+    height: 700px;
+    margin: 6rem;
+    position: absolute;
+  }
+
+  .logo {
+    width: 70px;
+    margin-right: 5rem;
+    height: 70px;
+    display: none;
+  }
+
+  h1 {
+    color: white;
+    font-size: 6rem;
+    font-weight: 700;
+    font-family: "Open Sans";
+    margin-right: 42rem;
+    display: none;
+  }
+
+  .login-form {
+    background-color: #f0eeee;
+    position: absolute;
+    height: 450px;
+    width: 750px;
+    margin: 10rem 0rem 0rem -22rem;
+    border-radius: 20px;
+    padding: 3rem 5rem 0rem 5rem;
+    display: none;
+  }
+
+  .inputs {
+    display: flex;
+    height: 73px;
+    width: 600px;
+    margin: 0rem 0rem 2rem 0rem;
+    padding: 0rem 0rem 0rem 2rem;
+    border-radius: 10px;
+    font-size: 1.3rem;
+    font-family: "Poppins";
+    display: none;
+  }
+
+  .for-rem {
+    display: flex;
+    justify-content: space-between;
+    font-family: "Poppins";
+    font-weight: 600;
+    display: none;
+  }
+
+  .remember {
+    display: flex;
+    margin: 0rem 1rem 0rem 0rem;
+    display: none;
+  }
+
+  .submit {
+    background-color: black;
+    width: 600px;
+    height: 73px;
+    margin: 2rem 0rem 0rem 0rem;
+    color: white;
+    font-size: 1.5rem;
+    border-radius: 10px;
+    font-family: "Poppins";
+    font-weight: 600;
+    display: none;
+  }
+}
