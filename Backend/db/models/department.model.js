@@ -1,7 +1,7 @@
-const sequelize = require('../config/sequelize.config');
-const { DataTypes } = require('sequelize');
+const sequelize = require("../config/sequelize.config");
+const { DataTypes } = require("sequelize");
 
-const Department = sequelize.define('department', {
+const Department = sequelize.define("department", {
   col_id: {
     type: DataTypes.INTEGER,
     allowNull: false,

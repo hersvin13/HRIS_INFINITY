@@ -7,8 +7,7 @@ import {
   NotePencil,
   Trash,
 } from "@phosphor-icons/react";
-// import axios from "axios";
-// import BASE_URL from "../../../link";
+
 import AddNewPositions from "./modal/position-modal/add-modal";
 import ViewPositions from "./modal/position-modal/view-modal";
 import UpdatePositions from "./modal/position-modal/update-modal";
@@ -98,17 +97,21 @@ const Position = () => {
             </thead>
             <tbody>
               <tr>
-                <td></td>
+                <td className="name"></td>
                 <td></td>
                 <td className="action">
                   <button
                     className="view"
-                    onClick={viewPositions}>
+                    onClick={() => {
+                      // Handle view action for this position
+                    }}>
                     <Eye />
                   </button>
                   <button
                     className="edit"
-                    onClick={updatePositions}>
+                    onClick={() => {
+                      // Handle edit action for this position
+                    }}>
                     <NotePencil />
                   </button>
                   <div className="delete">

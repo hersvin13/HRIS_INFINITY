@@ -4,8 +4,8 @@ const Position = require("../db/models/position.model"); // Import the Position 
 // READ
 router.route("/").get(async (req, res) => {
   try {
-    const positions = await Position.findAll();
-    if (positions && positions.length > 0) {
+    const position = await Position.findAll();
+    if (position && position.length > 0) {
       res.status(200).json({ success: true, positions });
     } else {
       res.status(404).json({ success: false, message: "No positions found" });

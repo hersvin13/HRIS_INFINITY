@@ -18,6 +18,9 @@
 .header .logo h1 {
   margin: -3rem 0 0 3rem;
   font-size: 2.5rem;
+  color: white;
+  font-family: Poppins;
+  font-weight: 600;
 }
 .header .user {
   display: flex;

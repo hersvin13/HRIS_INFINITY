@@ -1,5 +1,8 @@
+.app {
+  background-color: #eceff2;
+}
 .container {
+  flex-direction: row;
+  width: 100%;
   display: flex;
-  justify-content: space-between;
-  width: 2000px;
 }

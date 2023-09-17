@@ -150,6 +150,7 @@ const Sidebar = ({ children }) => {
                 <NavLink
                   key={subIndex}
                   to={subItem.path}
+                  className="link"
                   style={{ color: "white" }}>
                   <div
                     onClick={() =>

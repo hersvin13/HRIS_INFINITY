@@ -1,13 +1,11 @@
 import React from "react";
-import "./styles/add-modal.css";
-import "bootstrap/dist/css/bootstrap.min.css";
 
-const AddNewPositions = ({ toggleModal }) => {
+const ViewBranch = ({ toggleModal }) => {
   return (
     <>
       <div className="modal">
         <div className="modal-content">
-          <h2>New Position</h2>
+          <h2>View Branch</h2>
           <form>
             <label htmlFor="positionName">Position Name:</label>
             <input
@@ -23,4 +21,4 @@ const AddNewPositions = ({ toggleModal }) => {
   );
 };
 
-export default AddNewPositions;
+export default ViewBranch;

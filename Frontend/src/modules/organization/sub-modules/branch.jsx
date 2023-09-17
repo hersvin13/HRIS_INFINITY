@@ -245,11 +245,7 @@ const Branch = () => {
         <div className="branch-header">
           <div className="branch-title">BRANCH</div>
           <div className="add-branch">
-            <button
-              className="btn btn-primary"
-              onClick={showAdd}>
-              + Add New Branch
-            </button>
+            <button onClick={showAdd}>+ Add New Branch</button>
           </div>
         </div>
         <div className="branch-filter">
