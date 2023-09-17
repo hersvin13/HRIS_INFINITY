@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "../styles/department.css";
-import { MagnifyingGlass, Sliders } from "@phosphor-icons/react";
+import {
+  MagnifyingGlass,
+  NotePencil,
+  Sliders,
+  Eye,
+  Trash,
+} from "@phosphor-icons/react";
 import axios from "axios";
 import BASE_URL from "../../../link";
 import { Modal, Row, Col, Button } from "react-bootstrap";
@@ -56,6 +62,7 @@ const Department = () => {
   const disableActionModal = () => setActionModal(false);
 
   const [departmentTable, setTable] = useState([]);
+
   //fetch Department:
   const fetchDept = () => {
     axios.get(`${BASE_URL}/department`).then((res) => {
@@ -70,6 +77,101 @@ const Department = () => {
   useEffect(() => {
     fetchDept();
   }, []);
+
+  //Update/edit Branch
+
+  //Toggle Update Modal:
+  const [updateModal, setUpdateModal] = useState(false);
+  const openUpdateModal = () => setUpdateModal(true);
+  const closeUpdateModal = () => setUpdateModal(false);
+
+  //fetched current data:
+  const [currentDepartment, setCurrentDepartment] = useState();
+
+  //fetch Current edit data:
+  const fetchCurrentDepartment = (departmentId) => {
+    axios
+      .get(`${BASE_URL}/department/${departmentId}`)
+      .then((res) => {
+        console.log(res.data.data);
+        setCurrentDepartment(res.data.data);
+        console.log(currentDepartment?.col_departmentName);
+      })
+      .catch((e) => {
+        console.error(e);
+      });
+
+    //output the correct branch name
+  };
+
+  const handleUpdateSucceed = () => {
+    swal({
+      title: "Update Message",
+      text: "Update Success!",
+      buttons: {
+        Ok: "Ok",
+      },
+    }).then(() => {
+      closeUpdateModal();
+      fetchDept();
+    });
+  };
+
+  //edit branch data
+  const [newDepartmentName, setNewDepartmentName] = useState();
+
+  const editDepartment = (departmentId) => {
+    axios
+      .patch(`${BASE_URL}/department/UpdateDept/${departmentId}`, {
+        departmentName: newDepartmentName,
+      })
+      .then((res) => {
+        if (res.data.succeed) {
+          handleUpdateSucceed();
+        }
+      });
+  };
+
+  //Delete Department
+  // Delete
+
+  const deleteDepartment = (deleteId) => {
+    axios
+      .delete(`${BASE_URL}/department/deleteDept/${deleteId}`)
+      .then((res) => {
+        // console.log("deleting: ", deleteId)
+        // console.log(res)
+        if (res.data.succeed) {
+          swal("File has been deleted.", {
+            icon: "success",
+          });
+        }
+      })
+      .then(() => {
+        fetchDept();
+      })
+      .catch((e) => console.error(e));
+  };
+
+  // Validations Delete
+  const handleDelete = (deleteId) => {
+    swal({
+      title: "Are you sure?",
+      text: "Once deleted, it will take some time to recover the data!",
+      icon: "warning",
+      buttons: {
+        cancel: "Cancel",
+        confirm: "Delete",
+      },
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        deleteDepartment(deleteId);
+      } else {
+        swal("Your file is safe.");
+      }
+    });
+  };
 
   return (
     <>
@@ -133,27 +235,54 @@ const Department = () => {
         <div className="department-table">
           <table>
             <thead>
-              <ul>
-                <li>DEPARTMENT</li>
-                <li>TOTAL EMPLOYEE</li>
-                <li>ACTION</li>
-              </ul>
+              <tr>
+                <td>DEPARTMENT</td>
+                <td>TOTAL EMPLOYEE</td>
+                <td className="action">ACTION</td>
+              </tr>
             </thead>
             <tbody>
               {departmentTable.length > 0 ? (
                 departmentTable.map((dept, index) => (
-                  <ul key={index}>
-                    <li>{dept.col_departmentName}</li>
-                    <li>{dept.total_employees}</li>
-                    <li>
-                      <button
-                        onClick={() => {
-                          toggleAndHandleAction(dept.col_id);
-                        }}>
-                        ACTION
-                      </button>
-                    </li>
-                  </ul>
+                  <tr key={index}>
+                    <td className="department-name">
+                      {dept.col_departmentName}
+                    </td>
+                    <td className="total_employees">{dept.total_employees}</td>
+                    <td className="action">
+                      <div className="view">
+                        <Button
+                          variant="primary"
+                          onClick={() => {
+                            toggleAndHandleAction(dept.col_id);
+                          }}>
+                          <Eye />
+                        </Button>
+                      </div>
+                      <div className="edit">
+                        <Button
+                          variant="warning"
+                          onClick={() => {
+                            fetchCurrentDepartment(dept.col_id);
+                            openUpdateModal();
+                          }}>
+                          <NotePencil />
+                        </Button>
+                      </div>
+                      <div className="delete">
+                        <Button
+                          variant="danger"
+                          onClick={() => {
+                            console.log(dept.col_id); // deleteId should be the branchId
+                            // setDeleteId(branch.branchId)
+                            handleDelete(dept.col_id);
+                          }}>
+                          {" "}
+                          <Trash />
+                        </Button>
+                      </div>
+                    </td>
+                  </tr>
                 ))
               ) : (
                 <ul>
@@ -236,6 +365,59 @@ const Department = () => {
           </button>
         </Modal.Footer>
       </Modal>
+
+      {/* Update Modal */}
+      <Modal
+        show={updateModal}
+        onHide={closeUpdateModal}
+        backdrop="static"
+        keyboard={true}>
+        <Modal.Header closeButton>
+          <Modal.Title>Edit</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {/* Add form inputs for updating Branch */}
+          {/* Example: */}
+          <label htmlFor="">New Branch Name:</label>
+          <input
+            type="text"
+            name=""
+            id=""
+            className="form-control"
+            value={
+              newDepartmentName ||
+              (currentDepartment && currentDepartment?.col_departmentName)
+            }
+            onChange={(e) => {
+              setNewDepartmentName(e.target.value);
+            }}
+            required
+          />
+          {/* Add other inputs as needed */}
+        </Modal.Body>
+        <Modal.Footer>
+          <button
+            className="btn"
+            variant="secondary"
+            onClick={closeUpdateModal}>
+            Close
+          </button>
+          <button
+            className="btn btn-primary"
+            onClick={() => {
+              editDepartment(currentDepartment.col_id);
+            }}
+            variant="primary">
+            Update
+          </button>
+        </Modal.Footer>
+      </Modal>
+
+      {/* Action Modal */}
+      <Modal
+        show={actionModalShow}
+        onHide={disableActionModal}
+        backdrop="static"></Modal>
 
       {/* Action Modal */}
       <Modal
