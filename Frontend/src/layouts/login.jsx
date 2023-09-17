@@ -1,53 +1,39 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import axios from "axios";
+import BASE_URL from "../link";
+import { useNavigate } from "react-router-dom";
+import swal from "sweetalert";
+
 import BG from "../assets/bg.jpg";
 import logo from "../assets/logo.png";
 import "./styles/login.css";
 
 const Login = () => {
-  const initialValues = { email: "", password: "" };
-  const [formValues, setFormValues] = useState(initialValues);
-  const [formErrors, setFormErrors] = useState({});
-  const [isSubmit, setIsSubmit] = useState(false);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+  // const router = Router()
 
-  const users = [{ email: "test@example.com", password: "password123" }];
+  const handleLogin = (e) => {
+    e.preventDefault(); // Prevent the default form submission behavior
+    axios
+      .post(BASE_URL + "/user/login", { username, password })
+      .then((response) => {
+        console.log(response.data);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormValues({ ...formValues, [name]: value });
+        swal("Login Successful", "Welcome Back", "success").then(() => {
+          navigate("/dashboard");
+        });
+      })
+      .catch((error) => {
+        swal(
+          "Invalid Credentials!",
+          "Please check your username or password",
+          "error"
+        );
+        console.error(error.response.data);
+      });
   };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setFormErrors(validate(formValues));
-    setIsSubmit(true);
-
-    if (Object.keys(formErrors).length === 0 && isSubmit) {
-      console.log("Login successful!");
-      console.log("Email:", formValues.email);
-      console.log("Password:", formValues.password);
-      // You can navigate to the next page or display a success message here
-    }
-  };
-
-  const validate = (values) => {
-    const errors = {};
-    const user = users.find(
-      (u) => u.email === values.email && u.password === values.password
-    );
-
-    if (!user) {
-      errors.password = "The email or password provided is incorrect";
-    }
-
-    return errors;
-  };
-
-  useEffect(() => {
-    console.log(formErrors);
-    if (Object.keys(formErrors).length === 0 && isSubmit) {
-      console.log(formValues);
-    }
-  }, [formErrors]);
 
   return (
     <>
@@ -55,7 +41,7 @@ const Login = () => {
         <img
           src={BG}
           className="app-bg"
-          alt="background"
+          alt="logo"
         />
         <div className="login-title">
           <img
@@ -64,30 +50,24 @@ const Login = () => {
             alt="logo"
           />
           <h1>HRIS</h1>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleLogin}>
+            {" "}
+            {/* Wrap the form around your input elements */}
             <div className="login-form">
-              <div className="field">
-                <input
-                  className="inputs"
-                  type="text"
-                  name="email"
-                  placeholder="Email"
-                  value={formValues.email}
-                  onChange={handleChange}
-                />
-              </div>
-              <p>{formErrors.email}</p>
-              <div className="field">
-                <input
-                  className="inputs"
-                  type="password"
-                  name="password"
-                  placeholder="Password"
-                  value={formValues.password}
-                  onChange={handleChange}
-                />
-              </div>
-              <p>{formErrors.password}</p>
+              <input
+                className="inputs"
+                type="text"
+                placeholder="Username"
+                onChange={(e) => setUsername(e.target.value)}
+                required
+              />
+              <input
+                className="inputs"
+                type="password"
+                placeholder="Password"
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
               <div className="for-rem">
                 <div className="remember">
                   <input
@@ -103,7 +83,7 @@ const Login = () => {
               <button
                 className="submit"
                 type="submit">
-                Submit
+                Sign In
               </button>
             </div>
           </form>
