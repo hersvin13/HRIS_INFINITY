@@ -82,7 +82,7 @@ router.route("/deptADD").post(async (req, res) => {
 
 //UPDATE
 router.route("/UpdateDept/:param_id").put(async (req, res) => {
-  const dept_id = req.params_id;
+  const dept_id = req.params.param_id;
   await Department.update(req.body, {
     where: {
       col_id: dept_id,
