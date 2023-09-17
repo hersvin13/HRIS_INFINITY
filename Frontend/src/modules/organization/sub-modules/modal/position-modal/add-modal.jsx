@@ -1,6 +1,5 @@
 import React from "react";
 import "./styles/add-modal.css";
-import "bootstrap/dist/css/bootstrap.min.css";
 
 const AddNewPositions = ({ toggleModal }) => {
   return (
