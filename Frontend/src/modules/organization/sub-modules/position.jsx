@@ -15,7 +15,6 @@ import UpdatePositions from "./modal/position-modal/update-modal";
 const Position = () => {
   //add modal
   const [addModal, setAddModal] = useState();
-
   const addPositions = () => {
     setAddModal(!addModal);
   };
@@ -102,16 +101,12 @@ const Position = () => {
                 <td className="action">
                   <button
                     className="view"
-                    onClick={() => {
-                      // Handle view action for this position
-                    }}>
+                    onClick={viewPositions}>
                     <Eye />
                   </button>
                   <button
                     className="edit"
-                    onClick={() => {
-                      // Handle edit action for this position
-                    }}>
+                    onClick={updatePositions}>
                     <NotePencil />
                   </button>
                   <div className="delete">

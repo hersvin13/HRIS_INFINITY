@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./layouts/header";
 import Sidebar from "./layouts/sidebar";
-
+import Login from "./layouts/login";
 import Dashboard from "./modules/dashboard";
 
 import "./App.css";
@@ -17,6 +17,13 @@ import SettingsRouting from "./modules/settings/settings-routing";
 function App() {
   return (
     <Router>
+      <Routes>
+        <Route
+          path="/"
+          element={<Login />}
+        />
+      </Routes>
+
       <div className="app">
         <Header />
         <div className="container">
@@ -24,7 +31,7 @@ function App() {
 
           <Routes>
             <Route
-              path="/"
+              path="/dashboard"
               element={<Dashboard />}
             />
             <Route
@@ -56,6 +63,7 @@ function App() {
               element={<SettingsRouting />}
             />
           </Routes>
+
           <TimekeepingRouting />
           <PayrollRouting />
           <EmployeeRouting />

@@ -11,7 +11,7 @@ import "../styles/branch.css";
 import BASE_URL from "../../../link";
 import Modal from "react-bootstrap/Modal";
 import Row from "react-bootstrap/Row";
-import Button from "react-bootstrap/Button";
+// import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import swal from "sweetalert";
 
@@ -145,8 +145,6 @@ const Branch = () => {
       .catch((e) => {
         console.error(e);
       });
-
-    //output the correct branch name
   };
 
   const handleUpdateSucceed = () => {
@@ -162,16 +160,16 @@ const Branch = () => {
     });
   };
 
-  //edit branch data
+  //Edit branch:
   const [newBranchName, setNewBranchName] = useState();
   const [newBranchAddress, setNewBranchAddress] = useState();
   const [newZipCode, setNewZipCode] = useState();
   const [newEmail, setNewEmail] = useState();
   const [newTel, setNewTel] = useState();
 
-  const editBranch = (branchId) => {
+  const editBranch = (updatebranch) => {
     axios
-      .patch(`${BASE_URL}/branch/edit/${branchId}`, {
+      .patch(`${BASE_URL}/branch/edit/${updatebranch}`, {
         branchName: newBranchName,
         branchAddress: newBranchAddress,
         zipcode: newZipCode,
@@ -186,8 +184,6 @@ const Branch = () => {
   };
 
   //View branch:
-
-  //toggle view modal:
   const [viewModal, setViewModal] = useState(false);
   const showView = () => setViewModal(true);
   const hideView = () => setViewModal(false);
@@ -206,11 +202,6 @@ const Branch = () => {
   };
 
   const [branches, setBranches] = useState([]);
-
-  const handleInputChange = (e) => {
-    setSearchQuery(e.target.value);
-  };
-
   const filteredBranches = branches.filter((branch) => {
     const matchesSelectedBranch =
       !selectedBranch || branch.name === selectedBranch;
@@ -222,14 +213,16 @@ const Branch = () => {
     return matchesSelectedBranch && matchesSearchQuery;
   });
 
-  const handleSelectChange = (e) => {
-    setSelectedBranch(e.target.value);
-  };
+  //   const handleSelectChange = (e) => {
+  //     setSelectedBranch(e.target.value);
+  //   };
 
   const filteredEntries = filteredBranches.length;
 
   const numberOfEntries = branches.length;
-
+  const handleInputChange = (e) => {
+    setSearchQuery(e.target.value);
+  };
   const handleClearFilters = () => {
     setSelectedBranch("");
     setSearchQuery("");
@@ -254,16 +247,8 @@ const Branch = () => {
             <select
               name="branchSelect"
               id="branchSelect"
-              value={selectedBranch}
-              onChange={handleSelectChange}>
+              value={selectedBranch}>
               <option value="">Select Branch</option>
-              {filteredBranches.map((branch, index) => (
-                <option
-                  key={index}
-                  value={branch.branch_name}>
-                  {branch.branch_name}
-                </option>
-              ))}
             </select>
           </div>
           {/* <button
@@ -331,37 +316,33 @@ const Branch = () => {
                   <td className="action">
                     <div className="view">
                       {/* View Branch Employees */}
-                      <Button
-                        variant="primary"
+                      <button
                         onClick={() => {
                           fetchBranchEmployees(branch.branchId);
                           showView();
                         }}>
                         <Eye />
-                      </Button>
+                      </button>
                     </div>
                     <div className="edit">
                       {/* Update Branch */}
-                      <Button
-                        variant="warning"
+                      <button
                         onClick={() => {
                           fetchCurrentBranch(branch.branchId);
                           openUpdateModal();
                         }}>
                         <NotePencil />
-                      </Button>
+                      </button>
                     </div>
                     <div className="delete">
                       {/* Delete Branch */}
-                      <Button
-                        variant="danger"
+                      <button
                         onClick={() => {
-                          console.log(branch.branchId); // deleteId should be the branchId
-                          // setDeleteId(branch.branchId)
+                          console.log(branch.branchId);
                           handleDelete(branch.branchId);
                         }}>
                         <Trash />
-                      </Button>
+                      </button>
                     </div>
                   </td>
                 </tr>

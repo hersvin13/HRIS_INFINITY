@@ -1,15 +1,47 @@
-import React from "react";
+import React, { useState } from "react";
 import "../styles/company-code.css";
-import { MagnifyingGlass, Sliders } from "@phosphor-icons/react";
+import {
+  MagnifyingGlass,
+  Sliders,
+  Eye,
+  NotePencil,
+  Trash,
+} from "@phosphor-icons/react";
+
+import AddNewCompanyCode from "./modal/company-code-modal/add-company-code";
+import ViewCompanyCode from "./modal/company-code-modal/view-company-code";
+import UpdateCompanyCode from "./modal/company-code-modal/update-company-code";
 
 const CompanyCode = () => {
+  //add modal
+  const [addModal, setAddModal] = useState();
+  const addCompanyCode = () => {
+    setAddModal(!addModal);
+  };
+
+  // view modal
+  const [viewModal, setViewModal] = useState();
+  const viewCompanyCode = () => {
+    setViewModal(!viewModal);
+  };
+
+  // update modal
+  const [updateModal, setUpdateModal] = useState();
+  const updateCompanyCode = () => {
+    setUpdateModal(!updateModal);
+  };
+
   return (
     <>
       <div className="company-code">
         <div className="company-code-header">
           <div className="company-code-title">COMPANY CODE</div>
           <div className="add-company-code">
-            <button type="submit">+ Add Company Code</button>
+            <button
+              type="submit"
+              onClick={addCompanyCode}>
+              + Add Company Code
+            </button>
           </div>
         </div>
         <div className="company-code-filter">
@@ -58,18 +90,49 @@ const CompanyCode = () => {
         <div className="company-code-table">
           <table>
             <thead>
-              <ul>
-                <li>COMPANY CODE</li>
-                <li>TOTAL EMPLOYEE</li>
-                <li>ACTION</li>
-              </ul>
+              <tr>
+                <td>COMPANY CODE</td>
+                <td>TOTAL EMPLOYEE</td>
+                <td>ACTION</td>
+              </tr>
             </thead>
             <tbody>
-              <ul>
-                <li>COMPANY CODE</li>
-                <li>TOTAL EMPLOYEE</li>
-                <li>ACTION</li>
-              </ul>
+              <tr>
+                <td>COMPANY CODE</td>
+                <td>TOTAL EMPLOYEE</td>
+                <td className="action">
+                  <div className="view">
+                    {/* View Branch Employees */}
+                    <button
+                      onClick={() => {
+                        // fetchBranchEmployees(branch.branchId);
+                        // showView();
+                      }}>
+                      <Eye />
+                    </button>
+                  </div>
+                  <div className="edit">
+                    {/* Update Branch */}
+                    <button
+                      onClick={() => {
+                        // fetchCurrentBranch(branch.branchId);
+                        // openUpdateModal();
+                      }}>
+                      <NotePencil />
+                    </button>
+                  </div>
+                  <div className="delete">
+                    {/* Delete Branch */}
+                    <button
+                      onClick={() => {
+                        // console.log(branch.branchId);
+                        // handleDelete(branch.branchId);
+                      }}>
+                      <Trash />
+                    </button>
+                  </div>
+                </td>
+              </tr>
             </tbody>
           </table>
         </div>
@@ -94,6 +157,9 @@ const CompanyCode = () => {
           </div>
         </div>
       </div>
+      {addModal && <AddNewCompanyCode toggleModal={addCompanyCode} />}
+      {viewModal && <ViewCompanyCode toggleModal={viewCompanyCode} />}
+      {updateModal && <UpdateCompanyCode toggleModal={updateCompanyCode} />}
     </>
   );
 };

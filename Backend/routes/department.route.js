@@ -8,6 +8,7 @@ const { Department, Employee } = require("../db/models/associations"); // Import
 //READ
 // department.js
 router.route("/").get(async (req, res) => {
+  const departmentName = req.query.departmentName;
   await Department.findAll()
     .then((dept) => {
       if (dept && dept.length > 0) {
@@ -80,12 +81,32 @@ router.route("/deptADD").post(async (req, res) => {
   }
 });
 
+router.route("/:id").get(async (req, res) => {
+  const deptId = req.params.id;
+
+  await Department.findOne({
+    where: {
+      deptId: deptId,
+    },
+  })
+    .then((data) => {
+      if (data) {
+        res.status(200).json({ succeed: true, data: data });
+      } else {
+        res.status(200).json({ succeed: false });
+      }
+    })
+    .catch((e) => {
+      res.status(400).json({ errorMessage: e });
+    });
+});
+
 //UPDATE
-router.route("/UpdateDept/:param_id").put(async (req, res) => {
-  const dept_id = req.params.param_id;
+router.route("/UpdateDept/:param_id").patch(async (req, res) => {
+  const deptId = req.params.param_id;
   await Department.update(req.body, {
     where: {
-      col_id: dept_id,
+      deptId: deptId,
     },
   })
     .then((update) => {

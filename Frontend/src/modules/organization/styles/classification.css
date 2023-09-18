@@ -120,7 +120,7 @@
   padding: 1rem 5rem 1rem 5rem;
   height: 50px;
 }
-.classification .classification-table thead ul {
+.classification .classification-table thead tr {
   display: flex;
   justify-content: space-between;
   font-weight: 600;
@@ -150,11 +150,25 @@
   background-color: gray;
   border-bottom-right-radius: 5px;
 }
-.classification .classification-table tbody ul {
+.classification .classification-table tbody tr {
   display: flex;
   justify-content: space-between;
   padding: 1rem 5rem 1rem 5rem;
   border-bottom: 1px solid gray;
+}
+.classification .classification-table tbody tr .action {
+  display: flex;
+  font-size: 22px;
+}
+.classification .classification-table tbody tr .action .view {
+  margin-right: 10px;
+}
+.classification .classification-table tbody tr .action .edit {
+  margin-right: 10px;
+  color: #0a9cbc;
+}
+.classification .classification-table tbody tr .action .delete {
+  color: #f90000;
 }
 
 /* pagination  */

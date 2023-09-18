@@ -13,6 +13,12 @@ import { Modal, Row, Col, Button } from "react-bootstrap";
 import swal from "sweetalert";
 
 const Department = () => {
+  //search
+  const [searchQuery, setSearchQuery] = useState("");
+  const handleInputChange = (e) => {
+    setSearchQuery(e.target.value);
+  };
+
   //Add Dept Modal:
   const [addModal, setAddModal] = useState(false);
   const showAdd = () => setAddModal(true);
@@ -79,8 +85,6 @@ const Department = () => {
   }, []);
 
   //Update/edit Branch
-
-  //Toggle Update Modal:
   const [updateModal, setUpdateModal] = useState(false);
   const openUpdateModal = () => setUpdateModal(true);
   const closeUpdateModal = () => setUpdateModal(false);
@@ -117,13 +121,12 @@ const Department = () => {
     });
   };
 
-  //edit branch data
   const [newDepartmentName, setNewDepartmentName] = useState();
 
-  const editDepartment = (departmentId) => {
+  const editDepartment = (updateDepartment) => {
     axios
-      .patch(`${BASE_URL}/department/UpdateDept/${departmentId}`, {
-        departmentName: newDepartmentName,
+      .patch(`${BASE_URL}/department/UpdateDept/${updateDepartment}`, {
+        col_departmentName: newDepartmentName,
       })
       .then((res) => {
         if (res.data.succeed) {
@@ -213,9 +216,10 @@ const Department = () => {
           <div className="table-page">
             <label htmlFor="">Show</label>
             <input
-              className="show"
-              type="number"
-              placeholder="0"
+              type="text"
+              value={searchQuery}
+              onChange={handleInputChange}
+              placeholder="Search"
             />
           </div>
           <div className="search">
@@ -251,35 +255,30 @@ const Department = () => {
                     <td className="total_employees">{dept.total_employees}</td>
                     <td className="action">
                       <div className="view">
-                        <Button
-                          variant="primary"
+                        <button
                           onClick={() => {
                             toggleAndHandleAction(dept.col_id);
                           }}>
                           <Eye />
-                        </Button>
+                        </button>
                       </div>
                       <div className="edit">
-                        <Button
-                          variant="warning"
+                        <button
                           onClick={() => {
                             fetchCurrentDepartment(dept.col_id);
                             openUpdateModal();
                           }}>
                           <NotePencil />
-                        </Button>
+                        </button>
                       </div>
                       <div className="delete">
-                        <Button
-                          variant="danger"
+                        <button
                           onClick={() => {
-                            console.log(dept.col_id); // deleteId should be the branchId
-                            // setDeleteId(branch.branchId)
+                            console.log(dept.col_id);
                             handleDelete(dept.col_id);
                           }}>
-                          {" "}
                           <Trash />
-                        </Button>
+                        </button>
                       </div>
                     </td>
                   </tr>
@@ -376,9 +375,7 @@ const Department = () => {
           <Modal.Title>Edit</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {/* Add form inputs for updating Branch */}
-          {/* Example: */}
-          <label htmlFor="">New Branch Name:</label>
+          <label htmlFor="">Department Name</label>
           <input
             type="text"
             name=""
@@ -393,7 +390,6 @@ const Department = () => {
             }}
             required
           />
-          {/* Add other inputs as needed */}
         </Modal.Body>
         <Modal.Footer>
           <button
@@ -405,7 +401,7 @@ const Department = () => {
           <button
             className="btn btn-primary"
             onClick={() => {
-              editDepartment(currentDepartment.col_id);
+              editDepartment(currentDepartment.deptId);
             }}
             variant="primary">
             Update

@@ -38,7 +38,7 @@ const Sidebar = ({ children }) => {
 
   const menuItem = [
     {
-      path: "/",
+      path: "/dashboard",
       name: "DASHBOARD",
       icon: <SquaresFour />,
     },

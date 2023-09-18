@@ -4,7 +4,7 @@
   padding-bottom: 17rem;
   height: 920px;
   margin-right: 20px;
-  margin-left: -320px;
+  margin-left: -315px;
 }
 
 .sidebar::-webkit-scrollbar-track {
@@ -38,7 +38,7 @@
   margin-left: 0.5rem;
   width: 250px;
   border-left: 5px solid #ffda18;
-  text-decoration: none;
+  /* text-decoration: none; */
 }
 
 .sidebar .downMenu {
@@ -88,7 +88,7 @@
   padding: 0rem 0rem 0rem 3rem;
 }
 
-.sidebar .subMenu:hover {
+.sidebar .subSub:hover {
   color: yellow;
 }
 

@@ -14,7 +14,13 @@ const Dashboard = () => {
     <>
       <div className=" flex justify-between">
         {/* <div className=" font-poppins font-bold  font text-3xl">Dashboard</div> */}
-        <div className="font-poppins font-bold text-2xl">{currentDate}</div>
+
+        <div className="font-poppins font-bold text-2xl">
+          {" "}
+          Dashboard
+          <br />
+          {currentDate}
+        </div>
       </div>
       {/* <div className="">
         <div className="w-96">hi</div>
