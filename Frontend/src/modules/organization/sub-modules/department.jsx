@@ -249,10 +249,8 @@ const Department = () => {
               {departmentTable.length > 0 ? (
                 departmentTable.map((dept, index) => (
                   <tr key={index}>
-                    <td className="department-name">
-                      {dept.col_departmentName}
-                    </td>
-                    <td className="total_employees">{dept.total_employees}</td>
+                    <td>{dept.col_departmentName}</td>
+                    <td>{dept.total_employees}</td>
                     <td className="action">
                       <div className="view">
                         <button
@@ -374,22 +372,34 @@ const Department = () => {
         <Modal.Header closeButton>
           <Modal.Title>Edit</Modal.Title>
         </Modal.Header>
+        {/* type='submit' */}
+        {/* onSubmit={} */}
+        {/* <form > */}
         <Modal.Body>
-          <label htmlFor="">Department Name</label>
-          <input
-            type="text"
-            name=""
-            id=""
-            className="form-control"
-            value={
-              newDepartmentName ||
-              (currentDepartment && currentDepartment?.col_departmentName)
-            }
-            onChange={(e) => {
-              setNewDepartmentName(e.target.value);
-            }}
-            required
-          />
+          <div className="p-3">
+            <Row>
+              <Col>
+                <div className="from-group">
+                  <label htmlFor="">Department Name:</label>
+                  <br />
+                  <input
+                    type="text"
+                    name=""
+                    id=""
+                    className="form-control"
+                    value={
+                      newDepartmentName ||
+                      (currentDepartment && currentDepartment?.departmentName)
+                    }
+                    onChange={(e) => {
+                      setNewDepartmentName(e.target.value);
+                    }}
+                    required
+                  />
+                </div>
+              </Col>
+            </Row>
+          </div>
         </Modal.Body>
         <Modal.Footer>
           <button

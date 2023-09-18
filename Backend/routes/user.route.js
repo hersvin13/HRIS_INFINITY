@@ -14,29 +14,6 @@ router.use(
   })
 );
 
-//login
-router.route("/login").post(async (req, res) => {
-  const { username, password } = req.body;
-  await User.findAll({
-    where: {
-      username: username,
-      password: password,
-    },
-  })
-    .then((user) => {
-      console.log(user);
-      if (user && user.length > 0) {
-        res.status(200).json({ success: true });
-      } else {
-        res.status(400).json({ success: false });
-      }
-    })
-    .catch((error) => {
-      console.error(error);
-      res.status(500).json({ success: false, error: "Internal server error" });
-    });
-});
-
 //Change Password
 router.route("/updatePass").put(async (req, res) => {
   const newPass = req.body.newPassword;
@@ -77,6 +54,30 @@ router.route("/updatePass").put(async (req, res) => {
         succeed: false,
       });
   }
+});
+
+//READ:
+router.route("/login").post(async (req, res) => {
+  const { username, password } = req.body;
+  await User.findAll({
+    attributes: ["username", "password"],
+    where: {
+      username: username,
+      password: password,
+    },
+  })
+    .then((user) => {
+      console.log(user);
+      if (user && user.length > 0) {
+        res.status(200).json({ success: true });
+      } else {
+        res.status(400).json({ success: false });
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+      res.status(500).json({ success: false, error: "Internal server error" });
+    });
 });
 
 //authenticate user:

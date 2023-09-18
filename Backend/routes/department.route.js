@@ -23,6 +23,34 @@ router.route("/").get(async (req, res) => {
     });
 });
 
+//
+router.route("/user/:id").get(async (req, res) => {
+  const deptId = req.params.id;
+
+  try {
+    const department = await Department.findOne({
+      where: {
+        deptId: deptId,
+      },
+      include: [
+        {
+          model: Employee,
+          as: "employees",
+        },
+      ],
+    });
+
+    if (department) {
+      res.status(200).json({ success: true, department });
+    } else {
+      res.status(404).json({ success: false, message: "Department not found" });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, error: "Internal server error" });
+  }
+});
+
 // Add a new route to fetch total employees
 router.route("/totalEmployees").get(async (req, res) => {
   try {

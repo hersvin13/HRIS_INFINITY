@@ -7,17 +7,13 @@ import {
   Trash,
 } from "@phosphor-icons/react";
 import axios from "axios";
-import "../styles/branch.css";
 import BASE_URL from "../../../link";
 import Modal from "react-bootstrap/Modal";
 import Row from "react-bootstrap/Row";
-import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import swal from "sweetalert";
 
-// import "../../modules.css";
-
-const Branch = () => {
+export const Branch = () => {
   const [selectedBranch, setSelectedBranch] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -79,9 +75,7 @@ const Branch = () => {
 
   //Delete Branch:
   // Delete
-
   // const [deleteId, setDeleteId] = useState(0)
-
   const deleteBranch = (deleteId) => {
     axios
       .delete(`${BASE_URL}/branch/delete/${deleteId}`)
@@ -126,7 +120,6 @@ const Branch = () => {
   };
 
   //Update/edit Branch
-
   //Toggle Update Modal:
   const [updateModal, setUpdateModal] = useState(false);
   const openUpdateModal = () => setUpdateModal(true);
@@ -147,8 +140,6 @@ const Branch = () => {
       .catch((e) => {
         console.error(e);
       });
-
-    //output the correct branch name
   };
 
   const handleUpdateSucceed = () => {
@@ -164,16 +155,16 @@ const Branch = () => {
     });
   };
 
-  //edit branch data
+  //Edit branch:
   const [newBranchName, setNewBranchName] = useState();
   const [newBranchAddress, setNewBranchAddress] = useState();
   const [newZipCode, setNewZipCode] = useState();
   const [newEmail, setNewEmail] = useState();
   const [newTel, setNewTel] = useState();
 
-  const editBranch = (branchId) => {
+  const editBranch = (updatebranch) => {
     axios
-      .patch(`${BASE_URL}/branch/edit/${branchId}`, {
+      .patch(`${BASE_URL}/branch/edit/${updatebranch}`, {
         branchName: newBranchName,
         branchAddress: newBranchAddress,
         zipcode: newZipCode,
@@ -188,8 +179,6 @@ const Branch = () => {
   };
 
   //View branch:
-
-  //toggle view modal:
   const [viewModal, setViewModal] = useState(false);
   const showView = () => setViewModal(true);
   const hideView = () => setViewModal(false);
@@ -200,66 +189,34 @@ const Branch = () => {
     axios
       .get(`${BASE_URL}/branch/users/${branchId}`)
       .then((res) => {
-        console.log("Branch users: ", res.data.employees);
+        console.log("Branch users: ", res.data.users);
         setTheBranchName(res.data.branch_name);
-        setBranchEmployees(res.data.employees);
+        setBranchEmployees(res.data.users);
       })
       .catch((e) => console.error(e));
   };
 
-  //   const branchList = [
-  //     {
-  //       name: "Slashtech Solutions Corp.",
-  //       address: "215 Bldg. Maysan Rd. Paso De Blas, Valenzuela",
-  //       zipcode: "1400",
-  //       email: "789@gmail.com",
-  //       telephone: "+123 3210 555",
-  //       designation: "10",
-  //     },
-  //     {
-  //       name: "Hello World Corp.",
-  //       address: "210 Bldg. Maysan Rd. Paso De Blas, Valenzuela",
-  //       zipcode: "1400",
-  //       email: "456@gmail.com",
-  //       telephone: "+143 5432 666",
-  //       designation: "8",
-  //     },
-  //     {
-  //       name: "Mall of Asian",
-  //       address: "230 Bldg. Maysan Rd. Paso De Blas, Valenzuela",
-  //       zipcode: "1400",
-  //       email: "123@gmail.com",
-  //       telephone: "+143 5432 777",
-  //       designation: "20",
-  //     },
-  //   ];
-
   const [branches, setBranches] = useState([]);
-
-  const handleInputChange = (e) => {
-    setSearchQuery(e.target.value);
-  };
-
   const filteredBranches = branches.filter((branch) => {
     const matchesSelectedBranch =
       !selectedBranch || branch.name === selectedBranch;
     const matchesSearchQuery =
-      (branch.name &&
-        branch.name.toLowerCase().includes(searchQuery.toLowerCase())) ||
-      (branch.email &&
-        branch.email.toLowerCase().includes(searchQuery.toLowerCase()));
+      (branch.branch_name &&
+        branch.branch_name.toLowerCase().includes(searchQuery)) ||
+      (branch.email && branch.email.toLowerCase().includes(searchQuery));
 
     return matchesSelectedBranch && matchesSearchQuery;
   });
 
-  const handleSelectChange = (e) => {
-    setSelectedBranch(e.target.value);
-  };
-
+  //   const handleSelectChange = (e) => {
+  //     setSelectedBranch(e.target.value);
+  //   };
   const filteredEntries = filteredBranches.length;
 
   const numberOfEntries = branches.length;
-
+  const handleInputChange = (e) => {
+    setSearchQuery(e.target.value);
+  };
   const handleClearFilters = () => {
     setSelectedBranch("");
     setSearchQuery("");
@@ -284,24 +241,16 @@ const Branch = () => {
             <select
               name="branchSelect"
               id="branchSelect"
-              value={selectedBranch}
-              onChange={handleSelectChange}>
+              value={selectedBranch}>
               <option value="">Select Branch</option>
-              {branches.map((branch, index) => (
-                <option
-                  key={index}
-                  value={branch.branch_name}>
-                  {branch.branch_name}
-                </option>
-              ))}
             </select>
           </div>
           {/* <button
-            type="button"
-            className="filter"
-            onClick={handleApplyFilter}>
-            Apply Filter
-          </button> */}
+              type="button"
+              className="filter"
+              onClick={handleApplyFilter}>
+              Apply Filter
+            </button> */}
           <button
             type="button"
             className="clear"
@@ -341,23 +290,23 @@ const Branch = () => {
             <thead>
               <tr>
                 <td>BRANCH NAME</td>
-                <td>BRANCH ADDRESS</td>
+                <td className="address">BRANCH ADDRESS</td>
                 <td className="zipcode">ZIPCODE</td>
-                <td>EMAIL</td>
-                <td>TELEPHONE</td>
+                <td className="email">EMAIL</td>
+                <td className="telephone">TELEPHONE</td>
                 <td className="designation">DESIGNATION</td>
-                <td>ACTION</td>
+                <td className="action">ACTION</td>
               </tr>
             </thead>
             <tbody>
               {filteredBranches.map((branch, index) => (
                 <tr key={index}>
-                  <td>{branch.branch_name}</td>
-                  <td>{branch.branch_address}</td>
-                  <td>{branch.zip_code}</td>
-                  <td>{branch.email}</td>
-                  <td>{branch.telephone_no}</td>
-                  <td>{branch.designation}</td>
+                  <td className="name">{branch.branch_name}</td>
+                  <td className="address">{branch.branch_address}</td>
+                  <td className="zipcode">{branch.zip_code}</td>
+                  <td className="email">{branch.email}</td>
+                  <td className="telephone">{branch.telephone_no}</td>
+                  <td className="designation">{branch.designation}</td>
                   <td className="action">
                     <div className="view">
                       {/* View Branch Employees */}
@@ -383,8 +332,7 @@ const Branch = () => {
                       {/* Delete Branch */}
                       <button
                         onClick={() => {
-                          console.log(branch.branchId); // deleteId should be the branchId
-                          // setDeleteId(branch.branchId)
+                          console.log(branch.branchId);
                           handleDelete(branch.branchId);
                         }}>
                         <Trash />
@@ -684,10 +632,7 @@ const Branch = () => {
         onHide={hideView}
         backdrop="static"
         keyboard={true}
-        size="xl"
-
-        // fullscreen= {true}
-      >
+        size="xl">
         <div className=" ">
           <Modal.Header closeButton>
             <Modal.Title>View</Modal.Title>
@@ -702,8 +647,7 @@ const Branch = () => {
                   </tr>
                 </thead>
                 <tbody className="">
-                  {branchEmployees?.length === 0 ||
-                  branchEmployees === undefined ? (
+                  {branchEmployees.length === 0 ? (
                     <tr>
                       <td
                         colSpan={2}
@@ -716,14 +660,14 @@ const Branch = () => {
                       <tr key={index}>
                         <td className="p-3 border-bottom">{theBranchName}</td>
                         <td className="p-3 border-bottom">
-                          {view.col_Fname} {view.col_Mname || " "}{" "}
-                          {view.col_Lname}
+                          {view.firstname} {view.middlename || " "}{" "}
+                          {view.lastname}
                         </td>
                       </tr>
                     ))
                   )}
                 </tbody>
-                {/* <EmployeeBranch branchId={branchId}/> */}
+                {/* <EmployeeBranch branchId={branchId}/> */}x
               </table>
             </div>
           </Modal.Body>
@@ -740,5 +684,3 @@ const Branch = () => {
     </>
   );
 };
-
-export default Branch;

@@ -31,7 +31,7 @@ router.route("/").get(async (req, res) => {
           },
           {
             branch_name: {
-              [Op.like]: `${branchName}`,
+              [Op.like]: `${branchName}%`,
             },
           },
         ],
