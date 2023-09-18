@@ -11,7 +11,6 @@ import "../styles/branch.css";
 import BASE_URL from "../../../link";
 import Modal from "react-bootstrap/Modal";
 import Row from "react-bootstrap/Row";
-import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import swal from "sweetalert";
 
@@ -340,28 +339,28 @@ const Branch = () => {
           <table>
             <thead>
               <tr>
-                <td>BRANCH NAME</td>
-                <td>BRANCH ADDRESS</td>
+                <td className="name">BRANCH NAME</td>
+                <td className="address">BRANCH ADDRESS</td>
                 <td className="zipcode">ZIPCODE</td>
-                <td>EMAIL</td>
-                <td>TELEPHONE</td>
+                <td className="email">EMAIL</td>
+                <td className="telephone">TELEPHONE</td>
                 <td className="designation">DESIGNATION</td>
-                <td>ACTION</td>
+                <td className="action">ACTION</td>
               </tr>
             </thead>
             <tbody>
               {filteredBranches.map((branch, index) => (
                 <tr key={index}>
-                  <td>{branch.branch_name}</td>
-                  <td>{branch.branch_address}</td>
-                  <td>{branch.zip_code}</td>
-                  <td>{branch.email}</td>
-                  <td>{branch.telephone_no}</td>
-                  <td>{branch.designation}</td>
+                  <td className="name">{branch.branch_name}</td>
+                  <td className="address">{branch.branch_address}</td>
+                  <td className="zipcode">{branch.zip_code}</td>
+                  <td className="email">{branch.email}</td>
+                  <td className="telephone">{branch.telephone_no}</td>
+                  <td className="designation">{branch.designation}</td>
                   <td className="action">
                     <div className="view">
-                      {/* View Branch Employees */}
                       <button
+                        variant="primary"
                         onClick={() => {
                           fetchBranchEmployees(branch.branchId);
                           showView();
@@ -370,8 +369,8 @@ const Branch = () => {
                       </button>
                     </div>
                     <div className="edit">
-                      {/* Update Branch */}
                       <button
+                        variant="success"
                         onClick={() => {
                           fetchCurrentBranch(branch.branchId);
                           openUpdateModal();
@@ -380,11 +379,9 @@ const Branch = () => {
                       </button>
                     </div>
                     <div className="delete">
-                      {/* Delete Branch */}
                       <button
+                        variant="danger"
                         onClick={() => {
-                          console.log(branch.branchId); // deleteId should be the branchId
-                          // setDeleteId(branch.branchId)
                           handleDelete(branch.branchId);
                         }}>
                         <Trash />
