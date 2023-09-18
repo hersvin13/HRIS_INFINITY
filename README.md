@@ -3,12 +3,12 @@ INFINITY_HRIS
 
 
 Frontend 
->cd Frontend
->npm install
+>cd Frontend,
+>npm install,
 >npm run start
 
 Backend
->cd Backend
->npm install
->npm install nodemon
->npm run devStart
+>cd Backend,
+>npm install,
+>npm install nodemon,
+>npm run devStart,
