@@ -216,10 +216,9 @@ const Department = () => {
           <div className="table-page">
             <label htmlFor="">Show</label>
             <input
-              type="text"
-              value={searchQuery}
-              onChange={handleInputChange}
-              placeholder="Search"
+              className="show"
+              type="number"
+              placeholder="0"
             />
           </div>
           <div className="search">
@@ -229,6 +228,8 @@ const Department = () => {
 
             <input
               type="text"
+              value={searchQuery}
+              onChange={handleInputChange}
               placeholder="Search"
             />
             <div className="search-settings">
