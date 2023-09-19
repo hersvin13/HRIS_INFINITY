@@ -2,7 +2,7 @@
   height: 850px;
   background-color: white;
   border-radius: 20px;
-  margin: 2rem -22rem 0rem 0rem;
+  margin: 2rem 0rem 0rem -2rem;
   padding: 1.5rem 2rem 0rem 2rem;
   font-family: Poppins;
 }
@@ -164,15 +164,16 @@
   padding: 1rem 2rem 1rem 1rem;
   border-bottom: 1px solid gray;
 }
-.branch .branch-table tbody tr td {
+/* .branch .branch-table tbody tr td {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
-}
+} */
 .branch .branch-table thead tr .name {
   padding-left: 1rem;
 }
 .branch .branch-table tbody tr .name {
   padding-left: 2rem;
+  position: relative;
 }
 .branch .branch-table thead tr .zipcode,
 .branch .branch-table thead tr .address {
